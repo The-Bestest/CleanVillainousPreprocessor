@@ -63,6 +63,7 @@ for node in os.scandir(directory):
                 participant.blocks = thresholds
 
 data.sort(key=lambda x: int(x.name[1:]))
+data = list(filter(lambda x: len(x.body) == 30 and len(x.blocks) == 30, data)) # remove incomplete datasets
 
 for participant in data:
     print(participant.name,
