@@ -68,3 +68,18 @@ for participant in data:
     print(participant.name,
         "\tBody:", str(len(participant.body)) + "(" + str(len(list(filter(lambda x: x == 0, participant.body)))) + " fails)",
         "\tBlocks: ", str(len(participant.blocks)) + "(" + str(len(list(filter(lambda x: x == 0, participant.blocks)))) + " fails)")
+
+with open('thresholds.csv', 'w') as thresholds_file:
+    writer = csv.writer(thresholds_file, quoting=csv.QUOTE_MINIMAL)
+    header = ["Participant", "Level"]
+    header.extend(["Trial" + str(el) for el in list(range(1, 31))])
+    writer.writerow(header)
+
+    for participant in data:
+        body = [participant.name, "Body"]
+        body.extend(participant.body)
+        writer.writerow(body)
+
+        blocks = [participant.name, "Blocks"]
+        blocks.extend(participant.blocks)
+        writer.writerow(blocks)
