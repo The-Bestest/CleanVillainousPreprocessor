@@ -24,7 +24,7 @@ def get_thresholds(game_file):
             last_motor_imagery = event
         if event[h("Event")] == "GameDecision":
             if last_motor_imagery == None:
-                print("You should never see this")
+                thresholds.append(0)
                 continue
             event_thresholds = parse_thresholds(last_motor_imagery[h("BCIThresholdBuffer")])
 

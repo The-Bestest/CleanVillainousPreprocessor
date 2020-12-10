@@ -14,12 +14,12 @@ Sanity check and extraction of threshold in data from the BCI event stream data
 ## Results
 
     P3      Body: 30(6 fails)       Blocks:  30(6 fails)
-    P4      Body: 29(10 fails)      Blocks:  27(10 fails)
-    P5      Body: 30(11 fails)      Blocks:  29(7 fails)
+    P4      Body: 30(11 fails)      Blocks:  30(13 fails)
+    P5      Body: 30(11 fails)      Blocks:  30(8 fails)
     P6      Body: 30(13 fails)      Blocks:  30(11 fails)
     P7      Body: 30(1 fails)       Blocks:  14(0 fails)
     P8      Body: 30(4 fails)       Blocks:  30(1 fails)
-    P9      Body: 28(5 fails)       Blocks:  30(6 fails)
+    P9      Body: 30(7 fails)       Blocks:  30(6 fails)
     P10     Body: 30(5 fails)       Blocks:  30(14 fails)
     P11     Body: 30(10 fails)      Blocks:  30(10 fails)
     P12     Body: 30(10 fails)      Blocks:  30(8 fails)
@@ -28,6 +28,6 @@ Sanity check and extraction of threshold in data from the BCI event stream data
     P15     Body: 30(1 fails)       Blocks:  30(1 fails)
     P16     Body: 30(6 fails)       Blocks:  30(1 fails)
     P17     Body: 30(2 fails)       Blocks:  30(4 fails)
-    P18     Body: 30(1 fails)       Blocks:  29(9 fails)
+    P18     Body: 30(1 fails)       Blocks:  30(10 fails)
     P19     Body: 30(1 fails)       Blocks:  30(4 fails)
     P20     Body: 30(2 fails)       Blocks:  30(5 fails)
