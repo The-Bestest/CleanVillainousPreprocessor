@@ -8,7 +8,7 @@ def parse_thresholds(threshold_str):
 
 def get_thresholds(game_file):
     """
-    Returns a list of thresholds as they change in time
+    Returns a list of thresholds as they change in time. The zeroes mean a failure
     """
 
     header = next(game_file)
@@ -24,6 +24,7 @@ def get_thresholds(game_file):
             last_motor_imagery = event
         if event[h("Event")] == "GameDecision":
             if last_motor_imagery == None:
+                print("You should never see this")
                 continue
             event_thresholds = parse_thresholds(last_motor_imagery[h("BCIThresholdBuffer")])
 
@@ -34,11 +35,20 @@ def get_thresholds(game_file):
 
     return thresholds
 
+class Participant:
+    def __init__(self, name):
+        self.name = name
+        self.body = []
+        self.blocks = []
+
 
 directory = r'data'
+data = []
 
 for node in os.scandir(directory):
-    participant = node.name
+    participant = Participant(node.name)
+    data.append(participant)
+
     levels = list(os.scandir(node.path))
 
     for level in levels:
@@ -47,4 +57,14 @@ for node in os.scandir(directory):
         with open(game_path) as game_file:
             thresholds = get_thresholds(csv.reader(game_file))
 
-            print(participant, level.name, thresholds)
+            if level.name == "Body":
+                participant.body = thresholds
+            elif level.name == "Blocks":
+                participant.blocks = thresholds
+
+data.sort(key=lambda x: int(x.name[1:]))
+
+for participant in data:
+    print(participant.name,
+        "\tBody:", str(len(participant.body)) + "(" + str(len(list(filter(lambda x: x == 0, participant.body)))) + " fails)",
+        "\tBlocks: ", str(len(participant.blocks)) + "(" + str(len(list(filter(lambda x: x == 0, participant.blocks)))) + " fails)")
