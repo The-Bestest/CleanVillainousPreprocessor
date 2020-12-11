@@ -13,6 +13,9 @@ Sanity check and extraction of threshold in data from the BCI event stream data
 
 ## Results
 
+Check out thresholds.csv
+## Sanity check
+
     P3      Body: 30(6 fails)       Blocks:  30(6 fails)
     P4      Body: 30(11 fails)      Blocks:  30(13 fails)
     P5      Body: 30(11 fails)      Blocks:  30(8 fails)

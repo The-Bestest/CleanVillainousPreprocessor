@@ -41,6 +41,16 @@ class Participant:
         self.body = []
         self.blocks = []
 
+def get_formatted_row(data, level_name):
+    row = [participant.name, level_name]
+    start_threshold = min([el for el in data[:5] if el != 0])
+    main_threshold = min([el for el in data[5:] if el != 0])
+
+    row.extend([start_threshold, main_threshold])
+    row.extend(data)
+
+    return row
+
 
 directory = r'data'
 data = []
@@ -72,15 +82,10 @@ for participant in data:
 
 with open('thresholds.csv', 'w') as thresholds_file:
     writer = csv.writer(thresholds_file, quoting=csv.QUOTE_MINIMAL)
-    header = ["Participant", "Level"]
+    header = ["Participant", "Level", "StartThresholdEstimate", "MainThresholdEstimate"]
     header.extend(["Trial" + str(el) for el in list(range(1, 31))])
     writer.writerow(header)
 
     for participant in data:
-        body = [participant.name, "Body"]
-        body.extend(participant.body)
-        writer.writerow(body)
-
-        blocks = [participant.name, "Blocks"]
-        blocks.extend(participant.blocks)
-        writer.writerow(blocks)
+        writer.writerow(get_formatted_row(participant.body, "Body"))
+        writer.writerow(get_formatted_row(participant.blocks, "Blocks"))
